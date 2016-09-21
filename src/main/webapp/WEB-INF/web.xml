@@ -1,0 +1,37 @@
+<web-app
+        xlmns="http://xmlns.jcp.org/xml/ns/javaee"
+        xlmns:xsi="http://www.o3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/webb-application"
+        version="3.1"
+        xmlns:xlmns="http://xmlns.jcp.org/xml/ns/javaee"
+        xmlns:xsi="http://java.sun.com/xml/ns/j2ee">
+
+    <servlet>
+        <servlet-name>Dispatcher</servlet-name>
+        <url-pattern>org.springframework.web.servlet.DispatcherServlet</url-pattern>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>WEB-INF/web-context.xml</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            WEB-INF/application-context.xml
+            WEB-INF/hibernate-context.xml
+        </param-value>
+    </context-param>
+
+</web-app>
