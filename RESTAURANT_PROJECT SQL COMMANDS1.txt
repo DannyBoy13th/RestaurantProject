@@ -1,0 +1,137 @@
+CREATE TABLE "prepared_dishes" (
+	"dish_id" integer NOT NULL,
+	"employee_id" integer NOT NULL,
+	"order_id" integer NOT NULL,
+	"date" DATE NOT NULL,
+	CONSTRAINT prepared_dishes_pk PRIMARY KEY ("dish_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "order" (
+	"id" serial NOT NULL,
+	"employee_id" integer NOT NULL,
+	"dish_id" integer NOT NULL,
+	"list_of_dishes" integer NOT NULL,
+	"table_number" integer NOT NULL,
+	"date" DATE NOT NULL,
+	CONSTRAINT order_pk PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "employee" (
+	"id" serial NOT NULL,
+	"surname" varchar NOT NULL,
+	"name" varchar NOT NULL,
+	"birthdate" date NOT NULL,
+	"telephone" varchar NOT NULL,
+	"position" varchar NOT NULL,
+	"salary" FLOAT NOT NULL,
+	CONSTRAINT employee_pk PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "dish" (
+	"id" serial NOT NULL,
+	"name" varchar NOT NULL,
+	"category" varchar NOT NULL,
+	"ingridients" integer NOT NULL,
+	"price" FLOAT NOT NULL,
+	"weight" FLOAT NOT NULL,
+	CONSTRAINT dish_pk PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "menu" (
+	"dish_id" integer NOT NULL,
+	"dish_name" varchar NOT NULL,
+	"dish_price" integer NOT NULL,
+	"dish_weight" integer NOT NULL,
+	CONSTRAINT menu_pk PRIMARY KEY ("dish_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "ingridient" (
+	"id" serial NOT NULL,
+	"name" varchar NOT NULL,
+	CONSTRAINT ingridient_pk PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "stock" (
+	"ingridient_id" integer NOT NULL,
+	"quantity" integer NOT NULL,
+	CONSTRAINT stock_pk PRIMARY KEY ("ingridient_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+ALTER TABLE "prepared_dishes" ADD CONSTRAINT "prepared_dishes_fk0" FOREIGN KEY ("dish_id") REFERENCES "dish"("id");
+ALTER TABLE "prepared_dishes" ADD CONSTRAINT "prepared_dishes_fk1" FOREIGN KEY ("employee_id") REFERENCES "employee"("id");
+ALTER TABLE "prepared_dishes" ADD CONSTRAINT "prepared_dishes_fk2" FOREIGN KEY ("order_id") REFERENCES "order"("id");
+
+ALTER TABLE "order" ADD CONSTRAINT "order_fk0" FOREIGN KEY ("employee_id") REFERENCES "employee"("id");
+ALTER TABLE "order" ADD CONSTRAINT "order_fk1" FOREIGN KEY ("dish_id") REFERENCES "dish"("id");
+ALTER TABLE "order" ADD CONSTRAINT "order_fk2" FOREIGN KEY ("list_of_dishes") REFERENCES "prepared_dishes"("dish_id");
+
+
+ALTER TABLE "dish" ADD CONSTRAINT "dish_fk0" FOREIGN KEY ("ingridients") REFERENCES "ingridient"("id");
+
+ALTER TABLE "menu" ADD CONSTRAINT "menu_fk0" FOREIGN KEY ("dish_id") REFERENCES "dish"("id");
+
+
+ALTER TABLE "stock" ADD CONSTRAINT "stock_fk0" FOREIGN KEY ("ingridient_id") REFERENCES "ingridient"("id");
+
+INSERT INTO employee (surname, name, birthdate, telephone, position, salary) VALUES
+    ('Daniel', 'Solo', '1992-03-13', '380631078997', 'cook', 45000.0),
+	('Angie', 'Green', '1992-05-19', '380635436323', 'waiter', 25000.0),
+	('David', 'Cator', '1987-09-23', '380965432643', 'waiter', 25000.0),
+	('Maxwell', 'Weber', '1985-11-26', '380984768324', 'cook', 45000.0),
+	('Katherine', 'Wahlberg', '1996-04-21', '380678954873', 'waiter', 20000.0),
+	('Jacob', 'Aller', '1978-12-18', '380936579865', 'cook', 45000.0),
+	('Eddie', 'Dean', '1984-10-11', '380631191919', 'bartender', 45000.0),
+	('Roland', 'Diskein', '1974-12-19', '380191901919', 'chef', 191919.0),
+	('Susannah', 'Dean', '1979-04-19', '380981909023', 'administrator', 30191.9),
+	('Jake', 'Chambers', '1998-06-10', '380631238476', 'waiter', 19000.0)
+	;
+	
+INSERT INTO ingridient (name) VALUES
+    ('pasta'),
+    ('chiken'),
+    ('ham'),
+    ('egg'),
+    ('yellow cheese'),
+    ('parmeggiano'),
+    ('tomatoes'),
+    ('sausages'),
+    ('saliami'),
+    ('salad'),
+    ('onion'),
+    ('garlic'),
+    ('beef'),
+    ('potato'),
+    ('dor blue'),
+    ('gorgonzola');	
+
+	
+INSERT INTO dish (name, category, ingridients, price, weight) VALUES
+    ('Carbonara', 'Main Dish', [1, 4, 5], 95, 350.0);
