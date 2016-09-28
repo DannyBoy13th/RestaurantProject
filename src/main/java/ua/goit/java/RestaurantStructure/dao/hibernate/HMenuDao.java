@@ -1,7 +1,47 @@
 package ua.goit.java.RestaurantStructure.dao.hibernate;
 
+import ua.goit.java.RestaurantStructure.dao.MenuDao;
+import ua.goit.java.RestaurantStructure.model.Dish;
+import ua.goit.java.RestaurantStructure.model.Menu;
+
+import java.util.List;
+
 /**
  * Created by Daniel Solo on 21.09.2016.
  */
-public class HMenuDao {
+public class HMenuDao implements MenuDao {
+    @Override
+    public void add(Menu menu) {
+
+    }
+
+    @Override
+    public void remove(Menu menu) {
+
+    }
+
+    @Override
+    public void addDish(Dish dish, Menu menu) {
+
+    }
+
+    @Override
+    public Menu getByID(Integer id) {
+        return null;
+    }
+
+    @Override
+    public void eraseDish(Dish dish, Menu menu) {
+
+    }
+
+    @Override
+    public Menu getByName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<Menu> findAll() {
+        return null;
+    }
 }
