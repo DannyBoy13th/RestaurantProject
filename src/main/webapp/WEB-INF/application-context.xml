@@ -4,6 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
 default-autowire="byName">
 
-    <bean id="employeeService" class="ua.goit.java.spring.mvc.service.EmployeeService"/>
-    <bean id="employeeDao" class="ua.goit.java.spring.mvc.dao.hibernate.HEmployeeDao"/>
+    <bean id="employeeService" class="ua.goit.java.RestaurantStructure.service."/>
+    <bean id="employeeDao" class="ua.goit.java.RestaurantStructure.dao.hibernate.HEmployeeDao"/>
 </beans>

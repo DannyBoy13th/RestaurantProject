@@ -1,6 +1,5 @@
 package ua.goit.java.RestaurantStructure.dao.hibernate;
 
-import ua.goit.java.RestaurantStructure.dao.IngridientDao;
 import ua.goit.java.RestaurantStructure.dao.OrderDao;
 import ua.goit.java.RestaurantStructure.model.Dish;
 import ua.goit.java.RestaurantStructure.model.Order;

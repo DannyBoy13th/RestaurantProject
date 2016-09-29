@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
-<context:component-scan base-package="ua.goit.java.spring.mvc.web"/>
+<context:component-scan base-package="ua.goit.java.RestaurantStructure.web"/>
     <mvc:annotation-driven/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
